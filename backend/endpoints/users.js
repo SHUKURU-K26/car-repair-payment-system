@@ -38,22 +38,22 @@ app.post('/login', async (req, res) => {
         }
 
         const [users] = await pool.execute(
-            'SELECT * FROM users WHERE username = ?',
-            [username]
+            'SELECT * FROM users WHERE username = ? AND password = ?',
+            [username, password]
         );
         
         if (users.length === 0) {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
-
-        const user = users[0];
-        const passwordMatch = await bcrypt.compare(password, user.password);
+         // IF you want to use hashed passwords, you should fetch the user by username first, then compare the hashed password
+        // const user = users[0];
+        // const passwordMatch = await bcrypt.compare(password, user.password);
         
-        if (!passwordMatch) {
-            return res.status(401).json({ message: 'Invalid credentials' });
-        }
+        // if (!passwordMatch) {
+        //     return res.status(401).json({ message: 'Invalid credentials' });
+        // }
 
-        res.json({ message: 'Login successful', userId: user.user_id });
+        res.json({ message: 'Login successful', userId: users.user_id });
     } catch (error) {
         console.error('Login error:', error);
         res.status(500).json({ message: 'Internal server error' });

@@ -120,8 +120,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`) VALUES
-(1, 'lscblack', '$2b$10$fPEdX1qqkKPodhGapNRDceP.bA0B3zNKveq45niG6GsBySdihmG26');
-
+(1, 'Shukuru', 'Kamanzi123');
+---You can yse hashed passwords for better security, but for simplicity, we are using plain text here. In a production system, you should never store passwords in plain text.
 --
 -- Indexes for dumped tables
 --
