@@ -28,7 +28,8 @@ app.post('/register', async (req, res) => {
     }
 });
 
-// Login endpoint with hashed password
+
+// Login endpoint with hashed password verification
 app.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
